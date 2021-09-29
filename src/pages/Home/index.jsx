@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TextField, { Input } from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
 
-import { Card } from '../../components';
+import { Card, Restaurant } from '../../components';
 
 import logo from '../../assets/logo.svg';
 import restaurante from '../../assets/restaurante-fake.png';
@@ -49,6 +49,13 @@ const Home = () => {
             <Card photo={restaurante} title='Restaurante 7' />
           </Carousel>
         </Search>
+        <Restaurant />
+        <Restaurant />
+        <Restaurant />
+        <Restaurant />
+        <Restaurant />
+        <Restaurant />
+        <Restaurant />
       </Container>
       <Map />
     </Wrapper>
