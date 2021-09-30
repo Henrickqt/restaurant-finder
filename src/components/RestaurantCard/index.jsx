@@ -5,11 +5,11 @@ import restaurante from '../../assets/restaurante-fake.png';
 
 import { Restaurant, RestaurantInfo, Title, Address, RestaurantPhoto } from './styles';
 
-const RestaurantCard = () => {
+const RestaurantCard = ({ restaurant }) => {
   const settings = {
     count: 5,
     isHalf: true,
-    value: 4,
+    value: restaurant.rating,
     edit: false,
     size: 20,
     activeColor: '#E7711C',
@@ -18,11 +18,19 @@ const RestaurantCard = () => {
   return (
     <Restaurant>
       <RestaurantInfo>
-        <Title>Restaurante 1</Title>
+        <Title>{restaurant.name}</Title>
         <ReactStars {...settings} />
-        <Address>Rua Comendador José Esteves</Address>
+        <Address>
+          {restaurant.vicinity || restaurant.formatted_address}
+        </Address>
       </RestaurantInfo>
-      <RestaurantPhoto src={restaurante} alt="Imagem do restaurante" />
+      <RestaurantPhoto
+        src={restaurant.photos 
+          ? restaurant.photos[0].getUrl() 
+          : restaurante
+        }
+        alt="Foto do restaurante"
+      />
     </Restaurant>
   );
 }

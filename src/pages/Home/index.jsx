@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import TextField, { Input } from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
 
@@ -10,6 +11,7 @@ import restaurante from '../../assets/restaurante-fake.png';
 import { Wrapper, Container, Search, Logo, Carousel, CarouselTitle } from './styles';
 
 const Home = () => {
+  const { restaurants } = useSelector((state) => state.restaurants);
   const [inputValue, setInputValue] = useState('');
   const [query, setQuery] = useState(null);
   const [modalOpened, setModalOpened] = useState(false);
@@ -37,7 +39,9 @@ const Home = () => {
           <TextField
             label='Pesquisar restaurantes'
             outlined
-            trailingIcon={<MaterialIcon role='button' icon='search' />}
+            trailingIcon={
+              <MaterialIcon role='button' icon='search' />
+            }
           >
             <Input
               value={inputValue}
@@ -49,25 +53,30 @@ const Home = () => {
             Na sua área:
           </CarouselTitle>
           <Carousel {...settings}>
-            <Card photo={restaurante} title='Restaurante 1' />
-            <Card photo={restaurante} title='Restaurante 2' />
-            <Card photo={restaurante} title='Restaurante 3' />
-            <Card photo={restaurante} title='Restaurante 4' />
-            <Card photo={restaurante} title='Restaurante 5' />
-            <Card photo={restaurante} title='Restaurante 6' />
-            <Card photo={restaurante} title='Restaurante 7' />
+            {restaurants.map((restaurant) => (
+              <Card
+                key={restaurant.place_id}
+                photo={restaurant.photos 
+                  ? restaurant.photos[0].getUrl() 
+                  : restaurante
+                }
+                title={restaurant.name}
+              />
+            ))}
           </Carousel>
         </Search>
-        <Restaurant />
-        <Restaurant />
-        <Restaurant />
-        <Restaurant />
-        <Restaurant />
-        <Restaurant />
-        <Restaurant />
+        {restaurants.map((restaurant) => (
+          <Restaurant
+            key={restaurant.place_id}
+            restaurant={restaurant}
+          />
+        ))}
       </Container>
       <Map query={query} />
-      <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)} />
+      <Modal
+        open={modalOpened}
+        onClose={() => setModalOpened(!modalOpened)}
+      />
     </Wrapper>
   );
 }
