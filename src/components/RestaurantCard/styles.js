@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Restaurant = styled.div`
   display: flex;
   justify-content: space-between;
-  border-left: 8px solid transparent;
-  margin-top: 8px;
+  border-left: 4px solid transparent;
+  margin-top: 1px;
   padding: 16px;
   background-color: #FFFFFF;
   cursor: pointer;

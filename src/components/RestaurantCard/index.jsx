@@ -5,7 +5,7 @@ import restaurante from '../../assets/restaurante-fake.png';
 
 import { Restaurant, RestaurantInfo, Title, Address, RestaurantPhoto } from './styles';
 
-const RestaurantCard = ({ restaurant }) => {
+const RestaurantCard = ({ restaurant, onClick }) => {
   const settings = {
     count: 5,
     isHalf: true,
@@ -16,7 +16,7 @@ const RestaurantCard = ({ restaurant }) => {
   };
 
   return (
-    <Restaurant>
+    <Restaurant onClick={onClick}>
       <RestaurantInfo>
         <Title>{restaurant.name}</Title>
         <ReactStars {...settings} />
