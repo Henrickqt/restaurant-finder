@@ -41,8 +41,3 @@ export const CarouselTitle = styled.h1`
   font-weight: 700;
   line-height: 29px;
 `;
-
-export const Map = styled.div`
-  flex: auto;
-  background-color: #D5D5D5;
-`;

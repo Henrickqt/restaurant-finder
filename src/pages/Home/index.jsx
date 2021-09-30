@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import TextField, { Input } from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
 
-import { Card, Restaurant, Modal } from '../../components';
+import { Card, Restaurant, Modal, Map } from '../../components';
 
 import logo from '../../assets/logo.svg';
 import restaurante from '../../assets/restaurante-fake.png';
 
-import { Wrapper, Container, Search, Logo, Carousel, CarouselTitle, Map } from './styles';
+import { Wrapper, Container, Search, Logo, Carousel, CarouselTitle } from './styles';
 
 const Home = () => {
   const [inputValue, setInputValue] = useState('');
+  const [query, setQuery] = useState(null);
   const [modalOpened, setModalOpened] = useState(false);
 
   const settings = {
@@ -21,6 +22,12 @@ const Home = () => {
     slidesToScroll: 4,
     adaptiveHeight: true,
   };
+
+  function handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      setQuery(inputValue);
+    }
+  }
 
   return (
     <Wrapper>
@@ -34,6 +41,7 @@ const Home = () => {
           >
             <Input
               value={inputValue}
+              onKeyPress={handleKeyPress}
               onChange={(e) => setInputValue(e.target.value)}
             />
           </TextField>
@@ -49,7 +57,6 @@ const Home = () => {
             <Card photo={restaurante} title='Restaurante 6' />
             <Card photo={restaurante} title='Restaurante 7' />
           </Carousel>
-          <button onClick={() => setModalOpened(true)}>Abrir modal</button>
         </Search>
         <Restaurant />
         <Restaurant />
@@ -59,7 +66,7 @@ const Home = () => {
         <Restaurant />
         <Restaurant />
       </Container>
-      <Map />
+      <Map query={query} />
       <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)} />
     </Wrapper>
   );
