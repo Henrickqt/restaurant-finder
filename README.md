@@ -1,6 +1,6 @@
 # Restaurant Finder
 
-![](https://github.com/Henrickqt/restaurant-finder/blob/master/assets/screen.jpg)
+![](https://github.com/Henrickqt/restaurant-finder/blob/master/assets/screen.png)
 
 Restaurant Finder is an application designed to search for nearby restaurants on Google.
 
